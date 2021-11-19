@@ -6,18 +6,19 @@ def index(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
     top = newsapi.get_top_headlines(country ='in')
-  
     l = top['articles']
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -29,13 +30,15 @@ def usa(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -48,13 +51,15 @@ def business(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -67,13 +72,15 @@ def entertainment(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -86,13 +93,15 @@ def general(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -105,13 +114,15 @@ def health(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -124,13 +135,15 @@ def science(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -143,13 +156,15 @@ def sports(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -162,13 +177,15 @@ def technology(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
@@ -183,12 +200,60 @@ def search(request):
     desc =[]
     news =[]
     img =[]
+    url = []
   
     for i in range(len(l)):
         f = l[i]
         news.append(f['title'])
         desc.append(f['description'])
         img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
+  
+    return render(request, 'index.html', context ={"mylist":mylist})
+
+def search_india(request):
+      
+
+    searchObj = request.POST
+    q = searchObj.get('search')
+    newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
+    top = newsapi.get_top_headlines(q = q, country ='in')
+    l = top['articles']
+    desc =[]
+    news =[]
+    img =[]
+    url = []
+  
+    for i in range(len(l)):
+        f = l[i]
+        news.append(f['title'])
+        desc.append(f['description'])
+        img.append(f['urlToImage'])
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
+  
+    return render(request, 'index.html', context ={"mylist":mylist})
+
+def search_usa(request):
+      
+
+    searchObj = request.POST
+    q = searchObj.get('search')
+    newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
+    top = newsapi.get_top_headlines(q = q, country ='us')
+    l = top['articles']
+    desc =[]
+    news =[]
+    img =[]
+    url = []
+  
+    for i in range(len(l)):
+        f = l[i]
+        news.append(f['title'])
+        desc.append(f['description'])
+        img.append(f['urlToImage'])
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
   
     return render(request, 'index.html', context ={"mylist":mylist})

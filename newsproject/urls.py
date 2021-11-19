@@ -20,6 +20,7 @@ from newsapp import views
   
 urlpatterns = [
     path('', views.index, name ='index'),
+    path('index', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('usa', views.usa, name ='usa'),
     path('business', views.business, name ='business'),
@@ -29,6 +30,8 @@ urlpatterns = [
     path('science', views.science, name ='science'),
     path('sports', views.sports, name ='sports'),
     path('technology', views.technology, name ='technology'),
-    path('search', views.search, name ='search'),
+    path('us_search', views.search_usa, name ='search'),
+    path('in_search', views.search_india, name ='india'),
     path('india', views.index, name ='india'),
+    path('search', views.search, name ='search'),
 ]
