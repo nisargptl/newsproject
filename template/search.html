@@ -33,19 +33,19 @@
  
         <nav id="main-nav-wrap">
          <ul class="main-navigation sf-menu">
-           <li class="current"><a href="http://127.0.0.1:8000/" title="">Home</a></li>								
+           <li class="current"><a href="https://newstimess.herokuapp.com/" title="">Home</a></li>								
            <li class="has-children">
              <a>Categories</a>
              <ul class="sub-menu">
-                   <li><a href="http://127.0.0.1:8000/india">India</a></li>
-                   <li><a href="http://127.0.0.1:8000/usa">USA</a></li>
-                   <li><a href="http://127.0.0.1:8000/business">Business</a></li>
-                   <li><a href="http://127.0.0.1:8000/entertainment">Entertainment</a></li>
-                   <li><a href="http://127.0.0.1:8000/general">General</a></li>
-                   <li><a href="http://127.0.0.1:8000/health">Health</a></li>
-                   <li><a href="http://127.0.0.1:8000/science">Science</a></li>
-                   <li><a href="http://127.0.0.1:8000/sports">Sports</a></li>
-                   <li><a href="http://127.0.0.1:8000/technology">Technology</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/india">India</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/usa">USA</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/business">Business</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/entertainment">Entertainment</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/general">General</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/health">Health</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/science">Science</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/sports">Sports</a></li>
+                   <li><a href="https://newstimess.herokuapp.com/technology">Technology</a></li>
                 </ul>
            </li>									
          </ul>
@@ -73,7 +73,9 @@
           <div class="bricks-wrapper">
  
             <div class="grid-sizer"></div>    
-            {% if new %}
+            {% if new == "" %}
+            <h1>Sorry, currently no news available for this topic.</h1>
+            {% else %}
             {% for new, des, i, url in mylist %}
             <article class="brick entry format-standard animate-this">
 
@@ -96,8 +98,6 @@
 
            </article> <!-- end article -->
            {% endfor %}
-           {% else %}
-              <h1>Sorry, currently no news available for this topic.</h1>
             {% endif %}
           </div>         
            
@@ -123,7 +123,6 @@
     
     <script>
       function OnSubmitForm(){
-        console.log('hi');
           document.myform.action = document.URL;
       }
       document.getElementById("form_id").addEventListener('submit', OnSubmitForm);
