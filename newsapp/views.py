@@ -5,7 +5,7 @@ from newsapi import NewsApiClient
 def index(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(country ='in')
+    top = newsapi.get_top_headlines(page_size=100)
     l = top['articles']
     desc =[]
     news =[]
@@ -24,7 +24,7 @@ def index(request):
 
 def usa(request):
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(country ='us')
+    top = newsapi.get_top_headlines(country ='us',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -42,10 +42,31 @@ def usa(request):
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
+def india(request):
+    newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
+    top = newsapi.get_top_headlines(country ='in',page_size=100)
+  
+    l = top['articles']
+    desc =[]
+    news =[]
+    img =[]
+    url = []
+  
+    for i in range(len(l)):
+        f = l[i]
+        news.append(f['title'])
+        desc.append(f['description'])
+        img.append(f['urlToImage'])
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
+  
+    return render(request, 'index.html', context ={"mylist":mylist})
+
+
 def business(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='business')
+    top = newsapi.get_top_headlines(category ='business',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -66,7 +87,7 @@ def business(request):
 def entertainment(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='entertainment')
+    top = newsapi.get_top_headlines(category ='entertainment',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -87,7 +108,7 @@ def entertainment(request):
 def general(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='general')
+    top = newsapi.get_top_headlines(category ='general',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -108,7 +129,7 @@ def general(request):
 def health(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='health')
+    top = newsapi.get_top_headlines(category ='health',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -129,7 +150,7 @@ def health(request):
 def science(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='science')
+    top = newsapi.get_top_headlines(category ='science',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -150,7 +171,7 @@ def science(request):
 def sports(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='sports')
+    top = newsapi.get_top_headlines(category ='sports',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -171,7 +192,7 @@ def sports(request):
 def technology(request):
       
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(category ='technology')
+    top = newsapi.get_top_headlines(category ='technology',page_size=100)
   
     l = top['articles']
     desc =[]
@@ -189,13 +210,37 @@ def technology(request):
   
     return render(request, 'index.html', context ={"mylist":mylist})
 
-def search(request):
+def search(request, name):
+      
+
+    searchObj = request.POST
+    q = searchObj.get('search')
+    print(name,q)
+    newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
+    top = newsapi.get_everything(q=q+ " AND " +name,page_size=100)
+    l = top['articles']
+    desc =[]
+    news =[]
+    img =[]
+    url = []
+  
+    for i in range(len(l)):
+        f = l[i]
+        news.append(f['title'])
+        desc.append(f['description'])
+        img.append(f['urlToImage'])
+        url.append(f['url'])
+    mylist = zip(news, desc, img, url)
+  
+    return render(request, 'search.html', context ={"mylist":mylist})
+
+def search_index(request):
       
 
     searchObj = request.POST
     q = searchObj.get('search')
     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_everything(q=q)
+    top = newsapi.get_everything(q=q,page_size=100)
     l = top['articles']
     desc =[]
     news =[]
@@ -210,50 +255,50 @@ def search(request):
         url.append(f['url'])
     mylist = zip(news, desc, img, url)
   
-    return render(request, 'index.html', context ={"mylist":mylist})
+    return render(request, 'search.html', context ={"mylist":mylist})
 
-def search_india(request):
+# def search_india(request):
       
 
-    searchObj = request.POST
-    q = searchObj.get('search')
-    newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(q = q, country ='in')
-    l = top['articles']
-    desc =[]
-    news =[]
-    img =[]
-    url = []
+#     searchObj = request.POST
+#     q = searchObj.get('search')
+#     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
+#     top = newsapi.get_everything(q = q+" AND india",page_size=100)
+#     l = top['articles']
+#     desc =[]
+#     news =[]
+#     img =[]
+#     url = []
   
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f['title'])
-        desc.append(f['description'])
-        img.append(f['urlToImage'])
-        url.append(f['url'])
-    mylist = zip(news, desc, img, url)
+#     for i in range(len(l)):
+#         f = l[i]
+#         news.append(f['title'])
+#         desc.append(f['description'])
+#         img.append(f['urlToImage'])
+#         url.append(f['url'])
+#     mylist = zip(news, desc, img, url)
   
-    return render(request, 'index.html', context ={"mylist":mylist})
+#     return render(request, 'index.html', context ={"mylist":mylist})
 
-def search_usa(request):
+# def search_usa(request):
       
 
-    searchObj = request.POST
-    q = searchObj.get('search')
-    newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
-    top = newsapi.get_top_headlines(q = q, country ='us')
-    l = top['articles']
-    desc =[]
-    news =[]
-    img =[]
-    url = []
+#     searchObj = request.POST
+#     q = searchObj.get('search')
+#     newsapi = NewsApiClient(api_key ='eaacdd1e29b6408bbdda371f9bebe91f')
+#     top = newsapi.get_everything(q = q +" AND (usa OR america OR united states of america)",page_size=100)
+#     l = top['articles']
+#     desc =[]
+#     news =[]
+#     img =[]
+#     url = []
   
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f['title'])
-        desc.append(f['description'])
-        img.append(f['urlToImage'])
-        url.append(f['url'])
-    mylist = zip(news, desc, img, url)
+#     for i in range(len(l)):
+#         f = l[i]
+#         news.append(f['title'])
+#         desc.append(f['description'])
+#         img.append(f['urlToImage'])
+#         url.append(f['url'])
+#     mylist = zip(news, desc, img, url)
   
-    return render(request, 'index.html', context ={"mylist":mylist})
+#     return render(request, 'index.html', context ={"mylist":mylist})

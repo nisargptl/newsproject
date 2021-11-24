@@ -37,15 +37,15 @@
            <li class="has-children">
              <a>Categories</a>
              <ul class="sub-menu">
-                   <li><a href="india">India</a></li>
-                   <li><a href="usa">USA</a></li>
-                   <li><a href="business">Business</a></li>
-                   <li><a href="entertainment">Entertainment</a></li>
-                   <li><a href="general">General</a></li>
-                   <li><a href="health">Health</a></li>
-                   <li><a href="science">Science</a></li>
-                   <li><a href="sports">Sports</a></li>
-                   <li><a href="technology">Technology</a></li>
+                   <li><a href="http://127.0.0.1:8000/india">India</a></li>
+                   <li><a href="http://127.0.0.1:8000/usa">USA</a></li>
+                   <li><a href="http://127.0.0.1:8000/business">Business</a></li>
+                   <li><a href="http://127.0.0.1:8000/entertainment">Entertainment</a></li>
+                   <li><a href="http://127.0.0.1:8000/general">General</a></li>
+                   <li><a href="http://127.0.0.1:8000/health">Health</a></li>
+                   <li><a href="http://127.0.0.1:8000/science">Science</a></li>
+                   <li><a href="http://127.0.0.1:8000/sports">Sports</a></li>
+                   <li><a href="http://127.0.0.1:8000/technology">Technology</a></li>
                 </ul>
            </li>									
          </ul>
@@ -53,7 +53,7 @@
        
        <form method = "POST" id = 'form_id' enctype = "multipart/form-data" name="myform">
         {% csrf_token %}
-            <input type="text" id="search" name="search" placeholder="Search" required>
+            <input type="text" id="search" name="search" placeholder="Search">
             <input type="submit" class="search-submit">
       </form>
        
@@ -73,9 +73,7 @@
           <div class="bricks-wrapper">
  
             <div class="grid-sizer"></div>    
-            {% if new == "" %}
-            <h1>Sorry, currently no news available for this topic.</h1>
-            {% else %}
+            {% if new %}
             {% for new, des, i, url in mylist %}
             <article class="brick entry format-standard animate-this">
 
@@ -98,8 +96,8 @@
 
            </article> <!-- end article -->
            {% endfor %}
-           
-              
+           {% else %}
+              <h1>Sorry, currently no news available for this topic.</h1>
             {% endif %}
           </div>         
            
@@ -125,12 +123,8 @@
     
     <script>
       function OnSubmitForm(){
-        if(document.URL=='http://127.0.0.1:8000/'){
-          document.myform.action = "search"
-        }else{
-          document.myform.action = document.URL+"/search";
-        }
-        
+        console.log('hi');
+          document.myform.action = document.URL;
       }
       document.getElementById("form_id").addEventListener('submit', OnSubmitForm);
     </script>
