@@ -19,7 +19,7 @@ from django.urls import path
 from newsapp import views
   
 urlpatterns = [
-    path('https://newstimess.herokuapp.com/', views.index, name ='index'),
+    path('', views.index, name ='index'),
     path('admin/', admin.site.urls),
     path('usa', views.usa, name ='usa'),
     path('india', views.india, name ='india'),
