@@ -3,21 +3,19 @@
 <html lang="en" class="no-js" dir="ltr">
   <head>
 
-   <link rel="stylesheet" href="{% static 'css/base.css' %}">
-   <link rel="stylesheet" href="{% static 'css/vendor.css' %}">  
-   <link rel="stylesheet" href="{% static 'css/main.css' %}">
+   <link rel="stylesheet" href="{% static '/css/base.css' %}">
+   <link rel="stylesheet" href="{% static '/css/vendor.css' %}">  
+   <link rel="stylesheet" href="{% static '/css/main.css' %}">
   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title></title>
+    <title>Newstimess</title>
 
     
   	<script src="{% static 'js/modernizr.js' %}" ></script>
 	  <script src="{% static 'js/pace.min.js' %}" ></script>
-    <style>.dark-mode {
-      background-color: black;
-      color: white;
-    }</style>
+
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
 
 <!-- Optional theme -->
   </head>
@@ -33,7 +31,7 @@
  
         <nav id="main-nav-wrap">
          <ul class="main-navigation sf-menu">
-           <li class="current"><a href="https://newstimess.herokuapp.com/" title="">Home</a></li>								
+           <li class="current"><a href="https://newstimess.herokuapp.com/">Home</a></li>								
            <li class="has-children">
              <a>Categories</a>
              <ul class="sub-menu">
@@ -58,7 +56,9 @@
       </form>
        
 
-      
+      <div class="triggers">
+				<a class="menu-toggle"><span>Menu</span></a>
+			</div>
       
     </header> <!-- end header -->
  
